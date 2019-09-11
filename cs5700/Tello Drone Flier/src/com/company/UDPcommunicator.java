@@ -43,7 +43,7 @@ public class UDPcommunicator {
 
         }
         if (reply == null || !reply.equals("ok"))
-            return "Error! No response!";
+            return "Error!";
         return reply;
     }
 }

@@ -2,21 +2,8 @@ package com.company.Messages;
 
 import java.nio.charset.StandardCharsets;
 
-//
-//public interface Message {
-//
-//    public String command;
-//    byte[] bytesToSent;
-//
-//    public Message(String command){
-//        this.command=command;
-//    }
-//
-//    public byte[] encode(){
-//        return command.getBytes(StandardCharsets.UTF_8);
-//    }
-//}
-
+//parent class for the following messages:
+//stop, speed?, battery?, and time?
 public class Message {
 
     public String messageContents;
