@@ -17,7 +17,7 @@ public class Main {
         String string = "Aris is ";
         int age = 22;
         System.out.println(string+ Integer.toString(age));
-        
+
 //        InetAddress droneAddress = InetAddress.getByName("127.0.0.1");     //127.0.0.1
 //        int dronePort = 8889;
 //

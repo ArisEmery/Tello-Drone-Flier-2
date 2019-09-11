@@ -1,5 +1,7 @@
 package com.company;
 
+import com.company.Messages.CommandMessage;
+
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -13,20 +15,23 @@ public class Flier {
     }
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        InetAddress droneAddress = InetAddress.getByName("127.0.0.1");     //127.0.0.1
-        int dronePort = 8889;
-
-        DatagramSocket udpClient =  new DatagramSocket();
-        udpClient.setSoTimeout(1000);
+//        InetAddress droneAddress = InetAddress.getByName("127.0.0.1");     //127.0.0.1
+//        int dronePort = 8889;
+//
+//        DatagramSocket udpClient =  new DatagramSocket();
+//        udpClient.setSoTimeout(1000);
 
         //-------- Put drone in command mode ---------
 
         System.out.println("Put drone in command mode...");
 
-        String request = "command";
-        byte[] bytesToSent;
-        byte[] bytesReceived;
-        DatagramPacket datagramPacket;
+        CommandMessage commandMessage = new CommandMessage();
+        UDPcommunicator udPcommunicator = new UDPcommunicator("127.0.0.1",8889);
+
+//        String request = "command";
+//        byte[] bytesToSent;
+//        byte[] bytesReceived;
+//        DatagramPacket datagramPacket;
 
         String reply = null;
         int maxRetries = 3;
