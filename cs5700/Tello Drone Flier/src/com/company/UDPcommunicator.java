@@ -11,20 +11,39 @@ public class UDPcommunicator {
     private InetAddress droneAddress;    //127.0.0.1
     private int dronePort;
     private DatagramSocket udpClient;
-    private byte[] bytesToSent;
-    private byte[] bytesReceived;
 
     public UDPcommunicator(String droneAddress,int dronePort) throws UnknownHostException, SocketException {
         this.droneAddress = InetAddress.getByName(droneAddress);
         this.dronePort = dronePort;
-        DatagramSocket udpClient =  new DatagramSocket();
-        udpClient.setSoTimeout(1000);
+        this.udpClient =  new DatagramSocket();
+        this.udpClient.setSoTimeout(1000);
     }
 
     public void sendMessage(Message message) throws IOException {
         DatagramPacket datagramPacket;
-        bytesToSent = message.messageContents.getBytes(StandardCharsets.UTF_8);
-        datagramPacket = new DatagramPacket(bytesToSent, bytesToSent.length, droneAddress, dronePort);
+        datagramPacket = new DatagramPacket(message.encode(), message.encode().length, droneAddress, dronePort);
         udpClient.send(datagramPacket);
+        System.out.println("Sent " + message.messageContents + " bytes to " + droneAddress.toString() + ":" + dronePort);
+    }
+
+    public String receiveMessage() throws IOException {
+        byte[] bytesReceived=new byte[64];
+        DatagramPacket datagramPacket = new DatagramPacket(bytesReceived, 64);
+        String reply="none"; //TODO change this here
+        try {
+            udpClient.receive(datagramPacket);
+        }
+        catch (SocketTimeoutException ex) {
+            datagramPacket = null;
+        }
+        if (datagramPacket != null) {
+            System.out.println(String.format("Received %d bytes", datagramPacket.getLength()));
+            reply = new String(bytesReceived, 0, datagramPacket.getLength(), StandardCharsets.UTF_8);
+            System.out.println("Receive " + reply);
+
+        }
+        if (reply == null || !reply.equals("ok"))
+            return "Error! No response!";
+        return reply;
     }
 }
