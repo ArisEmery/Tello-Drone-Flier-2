@@ -1,0 +1,8 @@
+package com.company.Messages;
+
+public class RotateCounterClockwiseMessage extends Message{
+    public RotateCounterClockwiseMessage(int degrees) {
+        messageContents = "cw" + Integer.toString(degrees);
+        report = new MessageSent();
+    }
+}
