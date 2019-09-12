@@ -20,6 +20,10 @@ public class UDPcommunicator {
     }
 
     public void sendMessage(Message message) throws IOException {
+        if(!message.isValid()){
+            System.out.println("Error, invalid message, won't attempt to send");
+            return;
+        }
         DatagramPacket datagramPacket;
         datagramPacket = new DatagramPacket(message.encode(), message.encode().length, droneAddress, dronePort);
         udpClient.send(datagramPacket);

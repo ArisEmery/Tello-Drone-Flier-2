@@ -4,5 +4,6 @@ public class StopMessage extends Message {
     public StopMessage() {
         messageContents = "stop";
         report = new MessageSent();
+        validator = new BasicMessage();
     }
 }

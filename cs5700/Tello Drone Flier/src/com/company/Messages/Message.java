@@ -4,10 +4,11 @@ import java.nio.charset.StandardCharsets;
 
 //parent class for the following messages:
 //stop, speed?, battery?, and time?
-public class Message {
+public abstract class Message {
 
     public String messageContents;
     public Report report;
+    public Validator validator;
 
     public Message(){
         this.messageContents=null;
@@ -20,4 +21,10 @@ public class Message {
     public void printMessageContents(){
         System.out.println(messageContents);
     }
+
+    public boolean isValid() {
+        return validator.isValid(messageContents);
+    }
+
+
 }

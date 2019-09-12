@@ -4,5 +4,6 @@ public class TimeMessage extends Message {
     public TimeMessage() {
         messageContents = "time?";
         report = new MessageSent();
+        validator = new BasicMessage();
     }
 }

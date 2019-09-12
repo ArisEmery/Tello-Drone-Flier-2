@@ -1,21 +1,22 @@
 package com.company;
 
-import com.company.Messages.CommandMessage;
-import com.company.Messages.LandMessage;
-import com.company.Messages.RotateClockwiseMessage;
-import com.company.Messages.TakeoffMessage;
+import com.company.Messages.*;
 
 import java.io.IOException;
 import java.net.*;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Scanner;
 
 //TODO: All commands may need a sleep command in between to give the drone time to complete its maneuver before
 //TODO: moving on to the next one
 
 public class Flier {
-    UDPcommunicator udpCommunicator;
-    public Flier() throws SocketException, UnknownHostException {
-        udpCommunicator = new UDPcommunicator("127.0.0.1",8889);
+    private UDPcommunicator udpCommunicator;
+    private ArrayList<Mission> Missions = new ArrayList<Mission>();
+    public Flier(String droneAddress, int dronePort) throws SocketException, UnknownHostException {
+        udpCommunicator = new UDPcommunicator(droneAddress,dronePort);
     }
 
     public void initiateCommandMode() throws IOException {
@@ -35,14 +36,50 @@ public class Flier {
     }
 
     public void launchMisson(Mission mission){
+        Iterator<String> iter = mission.missionCommands.iterator();
+        while (iter.hasNext()) {
+            switch (iter.next()){
+                case "takeoff":
+                    System.out.println("sd");
+            }
+            System.out.print(iter.next() + ", ");
+        }
+    }
+
+    public void createNewMission(){
 
     }
 
     public static void main(String[] args) throws IOException {
         //-------- Put drone in command mode ---------
-        Flier flier = new Flier();
+        String droneAddress="127.0.0.1";
+        int dronePort=8889;
+//        RotateClockwiseMessage upMessage = new RotateClockwiseMessage(361);
+//        System.out.println(upMessage.isValid());
+//        System.out.println("Welcome to the Telu Edu Drone Flier!");
+//        System.out.println("Would you like to specify the IP Address and Command Port for\n" +
+//                "the drone? (The default drone Address will be 127.0.0.1 and the default\n" +
+//                "port will be 8889. Press 1 for yes and 2 for no (default).");
+//        Scanner scanner = new Scanner(System.in);
+//        int userChoice = scanner.nextInt();
+//        scanner.nextLine();
+//        if (userChoice == 1){
+//            System.out.println("please specify your desired IP address: ");
+//            droneAddress = scanner.nextLine();
+//            System.out.println("please specify your desired command port: ");
+//            dronePort = scanner.nextInt();
+//        }
+//        ArrayList<String> mission = new ArrayList<String>();
+//        mission.add("takeoff");
+//        mission.add("rotate 360");
+//        mission.add("land");
+
+//        Mission myMission = new Mission(mission);
+        Flier flier = new Flier(droneAddress,dronePort);
         flier.initiateCommandMode();
-        System.out.println("Takeoff...");
+//        flier.launchMisson(myMission);
+//
+//
         TakeoffMessage takeoffMessage = new TakeoffMessage();
         String reply = null;
         flier.udpCommunicator.sendMessage(takeoffMessage);

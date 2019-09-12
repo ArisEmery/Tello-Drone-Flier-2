@@ -4,5 +4,6 @@ public class SpeedMessage extends Message {
     public SpeedMessage() {
         messageContents = "speed?";
         report = new MessageSent();
+        validator = new BasicMessage();
     }
 }
