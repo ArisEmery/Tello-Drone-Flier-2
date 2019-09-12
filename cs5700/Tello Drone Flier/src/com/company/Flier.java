@@ -18,7 +18,7 @@ public class Flier {
         udpCommunicator = new UDPcommunicator(droneAddress,dronePort);
     }
 
-    public void initiateCommandMode() throws IOException {
+    public boolean initiateCommandMode() throws IOException {
         System.out.println("Put drone in command mode...");
         CommandMessage commandMessage = new CommandMessage();
         String reply = null;
@@ -32,9 +32,17 @@ public class Flier {
             System.out.println("Remaining retries: " + maxRetries);
             maxRetries--;
         }
+        if (maxRetries <=0){
+            return false;
+        }
+        return true;
     }
 
-    public void launchMisson(Mission mission) throws IOException, InterruptedException {
+    public UDPcommunicator getUDPcommunicator(){
+        return udpCommunicator;
+    }
+
+    public boolean launchMisson(Mission mission) throws IOException, InterruptedException {
         //Supported messages: command, takeoff, land, up, down, left, right, forward, back, cw, cww,
         //stop, speed?, battery?, and time?
         initiateCommandMode();
@@ -110,6 +118,10 @@ public class Flier {
 
 
         }
+        if(iter.hasNext()==false){
+            return true;
+        }
+        return false;
     }
 
 
