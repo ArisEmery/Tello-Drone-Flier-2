@@ -35,7 +35,7 @@ public class Flier {
         }
     }
 
-    public void launchMisson(Mission mission) throws IOException {
+    public void launchMisson(Mission mission) throws IOException, InterruptedException {
         //Supported messages: command, takeoff, land, up, down, left, right, forward, back, cw, cww,
         //stop, speed?, battery?, and time?
         initiateCommandMode();
@@ -106,6 +106,8 @@ public class Flier {
             udpCommunicator.sendMessage(nextMessageToSend);
             String reply = null;
             reply=udpCommunicator.receiveMessage();
+            Thread.sleep(5000);
+
 
 
         }
