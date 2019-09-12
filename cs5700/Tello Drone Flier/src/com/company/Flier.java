@@ -38,7 +38,7 @@ public class Flier {
         //Supported messages: command, takeoff, land, up, down, left, right, forward, back, cw, cww,
         //stop, speed?, battery?, and time?
         initiateCommandMode();
-        Iterator<String> iter = mission.getMissionCommands().iterator();
+        Iterator<String> iter = mission.missionCommands.iterator();
         while (iter.hasNext()) {
             Message nextMessageToSend=null;
             String currentCommand=iter.next();
@@ -58,7 +58,7 @@ public class Flier {
                     nextMessageToSend=new LandMessage();
                     break;
                 case "up":
-                    System.out.println("Going up by "+unitOfDegreesOrDistance +"cm...");
+                    System.out.println("Going up by "+unitOfDegreesOrDistance +" cm...");
                     nextMessageToSend=new UpMessage(unitOfDegreesOrDistance);
                     break;
                 case "down":
@@ -66,23 +66,23 @@ public class Flier {
                     nextMessageToSend=new DownMessage(unitOfDegreesOrDistance);
                     break;
                 case "left":
-                    System.out.println("Going left by "+unitOfDegreesOrDistance +"cm...");
+                    System.out.println("Going left by "+unitOfDegreesOrDistance +" cm...");
                     nextMessageToSend=new LeftMessage(unitOfDegreesOrDistance);
                     break;
                 case "forward":
-                    System.out.println("Going forward by "+unitOfDegreesOrDistance +"cm...");
+                    System.out.println("Going forward by "+unitOfDegreesOrDistance +" cm...");
                     nextMessageToSend=new ForwardMessage(unitOfDegreesOrDistance);
                     break;
                 case "back":
-                    System.out.println("Going back by "+unitOfDegreesOrDistance +"cm...");
+                    System.out.println("Going back by "+unitOfDegreesOrDistance +" cm...");
                     nextMessageToSend=new BackMessage(unitOfDegreesOrDistance);
                     break;
                 case "cw":
-                    System.out.println("Rotating clockwise by "+unitOfDegreesOrDistance +"degrees...");
+                    System.out.println("Rotating clockwise by "+unitOfDegreesOrDistance +" degrees...");
                     nextMessageToSend=new RotateClockwiseMessage(unitOfDegreesOrDistance);
                     break;
                 case "cww":
-                    System.out.println("Going counterclockwise by "+unitOfDegreesOrDistance +"degrees...");
+                    System.out.println("Going counterclockwise by "+unitOfDegreesOrDistance +" degrees...");
                     nextMessageToSend=new RotateCounterClockwiseMessage(unitOfDegreesOrDistance);
                     break;
                 case "stop":

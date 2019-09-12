@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Mission {
-    private ArrayList<String> missionCommands = new ArrayList<String>();
+    public ArrayList<String> missionCommands = new ArrayList<String>();
 
     public Mission (ArrayList<String> missionCommands) {
         this.missionCommands=missionCommands;

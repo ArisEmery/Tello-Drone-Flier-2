@@ -19,15 +19,16 @@ public class UDPcommunicator {
         this.udpClient.setSoTimeout(1000);
     }
 
-    public void sendMessage(Message message) throws IOException {
+    public boolean sendMessage(Message message) throws IOException {
         if(!message.isValid()){
             System.out.println("Error, invalid message, won't attempt to send");
-            return;
+            return false;
         }
         DatagramPacket datagramPacket;
         datagramPacket = new DatagramPacket(message.encode(), message.encode().length, droneAddress, dronePort);
         udpClient.send(datagramPacket);
         System.out.println("Sent " + message.messageContents + " bytes to " + droneAddress.toString() + ":" + dronePort);
+        return true;
     }
 
     public String receiveMessage() throws IOException {

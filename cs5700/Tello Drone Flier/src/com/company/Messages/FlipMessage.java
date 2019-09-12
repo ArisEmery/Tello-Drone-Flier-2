@@ -1,4 +1,4 @@
-//package com.company.Messages;
+//package com.company.Main.Messages;
 ////
 ////public class FlipMessage extends Message{
 ////    public FlipMessage(String direction) {

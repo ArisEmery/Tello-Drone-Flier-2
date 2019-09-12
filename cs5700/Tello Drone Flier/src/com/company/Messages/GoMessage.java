@@ -1,4 +1,4 @@
-//package com.company.Messages;
+//package com.company.Main.Messages;
 //
 //public class GoMessage extends Message{
 //    public GoMessage(int x, int y, int z, int speed) {
