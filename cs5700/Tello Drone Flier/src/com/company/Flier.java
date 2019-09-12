@@ -14,7 +14,6 @@ import java.util.Scanner;
 
 public class Flier {
     private UDPcommunicator udpCommunicator;
-    private ArrayList<Mission> Missions = new ArrayList<Mission>();
     public Flier(String droneAddress, int dronePort) throws SocketException, UnknownHostException {
         udpCommunicator = new UDPcommunicator(droneAddress,dronePort);
     }
@@ -39,7 +38,7 @@ public class Flier {
         //Supported messages: command, takeoff, land, up, down, left, right, forward, back, cw, cww,
         //stop, speed?, battery?, and time?
         initiateCommandMode();
-        Iterator<String> iter = mission.missionCommands.iterator();
+        Iterator<String> iter = mission.getMissionCommands().iterator();
         while (iter.hasNext()) {
             Message nextMessageToSend=null;
             String currentCommand=iter.next();
@@ -113,9 +112,6 @@ public class Flier {
         }
     }
 
-    public void createNewMission(){
-
-    }
 
 
 }
