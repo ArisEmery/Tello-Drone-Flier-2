@@ -44,7 +44,7 @@ public class Flier {
 
     public boolean launchMisson(Mission mission) throws IOException, InterruptedException {
         //Supported messages: command, takeoff, land, up, down, left, right, forward, back, cw, cww,
-        //stop, speed?, battery?, and time?
+        //speed?, battery?, and time?
         initiateCommandMode();
         Iterator<String> iter = mission.missionCommands.iterator();
         while (iter.hasNext()) {

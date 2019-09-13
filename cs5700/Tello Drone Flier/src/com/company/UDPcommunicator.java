@@ -47,8 +47,8 @@ public class UDPcommunicator {
             System.out.println("Receive " + reply);
 
         }
-        if (reply == null || !reply.equals("ok"))
-            return "Error!";
+//        if (reply == null || !reply.equals("ok"))
+//            return "Error!";
         return reply;
     }
 }

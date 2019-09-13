@@ -9,7 +9,7 @@ public class Main {
     public ArrayList<Mission> generateMissions(){
         ArrayList<Mission> myMissions = new ArrayList<Mission>();
         //Supported messages: command, takeoff, land, up, down, left, right, forward, back, cw, cww,
-        //stop, speed?, battery?, and time?
+        //speed?, battery?, and time?
 
         //Mission 1
         ArrayList<String> mission = new ArrayList<String>();
@@ -52,7 +52,6 @@ public class Main {
 
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        //-------- Put drone in command mode ---------
         String droneAddress="127.0.0.1";
         int dronePort=8889;
         Main main = new Main();
